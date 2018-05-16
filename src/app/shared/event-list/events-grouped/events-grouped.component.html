@@ -1,0 +1,10 @@
+<div class="card background-color" *ngIf="events">
+  <div class="card-header grey white-text darken-1">
+    <h5 class="text-center">
+      {{eventDate | date:"E - dd.MM.yy"}}
+    </h5>
+  </div>
+  <div class="card-body grey" *ngFor="let event of events">
+    <app-event [event]="event"></app-event>
+  </div>
+</div>

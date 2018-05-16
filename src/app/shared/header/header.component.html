@@ -1,0 +1,33 @@
+<mdb-navbar SideClass="navbar navbar-dark navbar-expand-sm red fixed-top darken-1">
+  <logo>
+    <img src="/assets/logo.png" class="logo-image" />
+    <a class="navbar-brand" [routerLink]="['/']"> Stuv Survival</a>
+  </logo>
+  <links>
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link waves-light" [routerLink]="['/events']" mdbRippleRadius>Events</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link waves-light" [routerLink]="['/mensa']" mdbRippleRadius>Mensa Plan</a>
+      </li>
+      <li class="nav-item" *ngIf="selectedCourse">
+        <a class="nav-link waves-light" (click)="onCourseSelect(selectedCourse)" mdbRippleRadius>Lectures</a>
+      </li>
+    </ul>
+    <ul class="navbar-nav float-right">
+      <li class="nav-item dropdown course-menu float-right" dropdown>
+        <a class="nav-link waves-light float-left" (click)="onCourseSelect(selectedCourse)" *ngIf="selectedCourse" mdbRippleRadius>
+          {{selectedCourse.courseTitle}}
+        </a>
+        <a dropdownToggle class="nav-link dropdown-toggle waves-light float-right" mdbRippleRadius>
+          <span *ngIf="!selectedCourse">Select Course</span>
+          <span class="caret"></span>
+        </a>
+        <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
+          <a (click)="onCourseSelect(course)" class="dropdown-item waves-light" *ngFor="let course of courseList" mdbRippleRadius>{{course.courseTitle}}</a>
+        </div>
+      </li>
+    </ul>
+  </links>
+</mdb-navbar>

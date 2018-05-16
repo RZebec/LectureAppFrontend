@@ -1,0 +1,10 @@
+<div class="card grey lighten-2" *ngIf="dailyPlan">  
+  <h3 class="card-header grey white-text white-text">
+    Plan for {{weekday[dailyPlan.weekday-1]}}
+  </h3>
+  <div class="card-body grey lighten-2">
+    <ul class="flex-row">
+        <li class="cardText" *ngFor="let meal of dailyPlan.meals"><i class="fa fa-wheelchair-alt"></i> {{meal}}</li>
+    </ul>
+  </div>
+</div>

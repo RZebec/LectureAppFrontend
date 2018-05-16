@@ -1,0 +1,40 @@
+<div class="card" *ngIf="event">
+  <div class="card-header grey white-text">
+    <h5 class="float-left">
+      {{event.start | date:"HH:mm":"UTC"}} - {{event.end | date:"HH:mm":"UTC"}}
+    </h5>
+    <h5 class="float-right">
+      {{event.location.split(",")[0]}}
+    </h5>
+  </div>
+  <div class="card-body grey lighten-2">
+    <div class="flex-row">
+      <h5 class="card-title text-center">
+        {{event.summary}}
+        <a (click)="onShowMore()" class="float-right" *ngIf="showMoreInfoButton" mdbRippleRadius>
+          <div *ngIf="showMoreInfo; then CaretUp else CaretDown"></div>
+          <ng-template #CaretDown>
+            <i class="fa fa-caret-down"></i>
+          </ng-template>
+          <ng-template #CaretUp>
+            <i class="fa fa-caret-up"></i>
+          </ng-template>
+        </a>
+      </h5>
+    </div>
+    <div class="flex-row">
+      <div *ngIf="showMoreInfo; then WholeDesc else ShortDesc"></div>
+      <ng-template #WholeDesc>
+        <p class="card-text">
+          {{event.description}}
+          <span *ngIf="event.description.length <= 0">&nbsp;</span>
+        </p>
+      </ng-template>
+      <ng-template #ShortDesc>
+        <p class="card-text">
+          {{shortDescription}}...
+        </p>
+      </ng-template>
+    </div>
+  </div>
+</div>

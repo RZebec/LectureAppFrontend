@@ -1,0 +1,17 @@
+<div class="card red lighten-3" *ngIf="shownEvents">
+    <h3 class="card-header red white-text">
+      {{title}}
+    </h3>
+    <div class="flex-row text-right">
+      <a class="btn btn-red" (click)="showOlderEvents()">Show Older</a>
+      <a class="btn btn-red" (click)="resetFilter()">Reset Filter</a>
+    </div>
+    <div class="card-body col-md-12">
+      <div class="flex-row" *ngFor="let events of shownEvents | groupBy:'organizationDay'; let i = index" >
+        <div class="col-lg-3 float-left no-padding">
+          <app-events-grouped [events]="events.value"></app-events-grouped>
+        </div>
+        <div *ngIf="(i+1)%4==0" class="hidden-md-down clearfix visible-sm-block dotted-bottom-border"></div>
+      </div>
+    </div>
+</div>
